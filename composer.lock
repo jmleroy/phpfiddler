@@ -4,9 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2bc2c1f3670d5bf0899b7ca69dc9f544",
-    "content-hash": "cb27708be89c2944def181983ae4b0ab",
+    "content-hash": "849cfcbeb4b008c497f79d95217228a9",
     "packages": [
+        {
+            "name": "jgthms/minireset.css",
+            "version": "0.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/jgthms/minireset.css/archive/0.0.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
         {
             "name": "scrivo/highlight.php",
             "version": "v9.0.0",
@@ -39,7 +49,7 @@
                 "highlight.php",
                 "syntax"
             ],
-            "time": "2016-01-01 14:08:00"
+            "time": "2016-01-01T14:08:00+00:00"
         }
     ],
     "packages-dev": [],
