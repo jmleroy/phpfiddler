@@ -39,7 +39,6 @@ Fiddle::export(function () {
 	return $c;
 });
 
-Fiddle::end();
 ?>
 
 <?php
@@ -48,3 +47,4 @@ Fiddle::export(function() {
 	[$match, $lastFour] = $matches;
 	return $lastFour;
 });
+Fiddle::end();
