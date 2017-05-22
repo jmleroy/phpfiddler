@@ -1,0 +1,14 @@
+{
+    "name": "jmleroy/fiddle",
+    "description": "tiny custom fiddler for PHP scripts",
+    "require": {
+        "scrivo/highlight.php": "^9.0"
+    },
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Jean-Marc Leroy",
+            "email": "jean-marc@lg21.be"
+        }
+    ]
+}
