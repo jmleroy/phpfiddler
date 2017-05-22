@@ -9,11 +9,11 @@ class Fiddle
 //display
     public static function start()
     {
-        include_once('header.inc.php');
+        include_once(dirname(__FILE__).'/header.inc.php');
     }
     public static function end()
     {
-        include_once('footer.inc.php');
+        include_once(dirname(__FILE__).'/footer.inc.php');
     }
     public static function withExecutionTime($tf = true)
     {
