@@ -1,8 +1,22 @@
 {
-    "name": "jmleroy/fiddle",
+    "name": "jmleroy/phpfiddler",
     "description": "tiny custom fiddler for PHP scripts",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jgthms/minireset.css",
+                "version": "0.0.3",
+                "dist": {
+                    "url": "https://github.com/jgthms/minireset.css/archive/0.0.3.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ],
     "require": {
-        "scrivo/highlight.php": "^9.0"
+        "scrivo/highlight.php": "^9.0",
+        "jgthms/minireset.css": "0.0.3" 
     },
     "license": "GPLv3",
     "authors": [

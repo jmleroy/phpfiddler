@@ -123,7 +123,7 @@ class Fiddle
             $highlighted_source_code = $h->highlight('php', $function_source_code);
             $function_source_code = $highlighted_source_code->value;
         }
-        echo '<table style="width:100%">';
+        echo '<table class="display">';
         echo '<thead><tr>';
         echo '<th>Source Code</th>';
         echo '<th>Return</th>';

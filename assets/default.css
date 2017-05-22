@@ -1,0 +1,28 @@
+body {
+	margin-bottom:3em; /* 2*#info.padding + 1em */
+}
+#info {
+	background-color: #EEE;
+	color: #AAA;
+	padding:1em;
+	font-size:80%;
+	position:fixed;
+	bottom:0;
+	width:100%;
+}
+.display {
+	background-color: #FFF;
+	width: 100%;
+	margin: 1em 0;
+	border-collapse: separate;
+	border-spacing: 1em .5em;
+}
+.display td {
+	vertical-align: top;
+}
+.display tfoot {
+	background-color: #FFF;
+	color: #AAA;
+	padding:1em;
+	font-size:80%;
+}
