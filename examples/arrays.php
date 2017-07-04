@@ -1,5 +1,5 @@
 <?php
-include_once('fiddle.class.php');
+include_once('../fiddle.class.php');
 
 Fiddle::start();
 
@@ -42,9 +42,23 @@ Fiddle::export(function () {
 ?>
 
 <?php
-Fiddle::export(function() {
-	preg_match('/^\d{3}\-\d{3}\-(\d{4})$/', '555-666-7890', $matches);
-	[$match, $lastFour] = $matches;
-	return $lastFour;
+
+$a = $b = range (0, 999);
+$b[] = 1000;
+shuffle($a);
+shuffle($b);
+
+Fiddle::withExecutionTime();
+Fiddle::export(function() use ($a, $b) {
+	$c = array_merge(array_diff($a, $b), array_diff($b, $a));
+	return $c;
+});
+
+$c = 'plok';
+
+Fiddle::export(function() use ($a, $b, $c) {
+	sort($a);
+	sort($b);
+	return $a == $b;
 });
 Fiddle::end();

@@ -1,5 +1,5 @@
 <?php
-include('fiddle.class.php');
+include('../fiddle.class.php');
 
 Fiddle::start();
 
@@ -27,3 +27,5 @@ Fiddle::export(function () {
 
   return $ret;
 });
+
+Fiddle::end();

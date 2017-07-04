@@ -134,11 +134,8 @@ class Fiddle
 
     protected static function display($function_return, $function_source_code, $execution_time)
     {
-        if (self::$withHighlight) {
-            $h = new Highlight\Highlighter();
-            $highlighted_source_code = $h->highlight('php', $function_source_code);
-            $function_source_code = $highlighted_source_code->value;
-        }
+        $function_source_code = self::highlight($function_source_code);
+
         echo '<table class="display">';
         echo '<thead><tr>';
         echo '<th>Source Code</th>';
@@ -152,6 +149,17 @@ class Fiddle
             echo '<tfoot><tr><td colspan="2">Execution time : ' . sprintf('%.5f', $execution_time * 1000). ' seconds</td></tr></tfoot>';
         }
         echo '</table>';
+    }
+
+    protected static function highlight($function_source_code)
+    {
+        if (self::$withHighlight) {
+            $h = new Highlight\Highlighter();
+            $highlighted_source_code = $h->highlight('php', $function_source_code);
+            $function_source_code = $highlighted_source_code->value;
+        }
+
+        return $function_source_code;
     }
 
     protected static function exportVariable($var, $depth = 0)

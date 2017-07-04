@@ -1,5 +1,5 @@
 <?php
-include('fiddle.class.php');
+include('../fiddle.class.php');
 
 Fiddle::start();
 

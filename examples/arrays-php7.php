@@ -1,5 +1,5 @@
 <?php
-include_once('fiddle.class.php');
+include_once('../fiddle.class.php');
 
 Fiddle::start();
 Fiddle::withExecutionTime();
