@@ -109,10 +109,16 @@ class Fiddle
         $source_code .= ') ';
 
         if ($reflection->getStaticVariables()) {
+            $definitions = [];
             $used_variables = [];
-            array_walk($reflection->getStaticVariables(), function($var, $key) use (&$used_variables) {
+            array_walk($reflection->getStaticVariables(), function($var, $key) use (&$definitions, &$used_variables) {
+                $definitions[] = '$'.$key . ' = ' .
+                    self::exportVariable($var) .
+                    '; // ' .
+                    self::exportVariableType($var);
                 $used_variables[] = '$' . $key;
             });
+            $source_code = implode(PHP_EOL, $definitions) . PHP_EOL . $source_code;
             $source_code .= PHP_EOL . 'use ('.implode(', ', $used_variables).') ';
         }
 
@@ -146,5 +152,49 @@ class Fiddle
             echo '<tfoot><tr><td colspan="2">Execution time : ' . sprintf('%.5f', $execution_time * 1000). ' seconds</td></tr></tfoot>';
         }
         echo '</table>';
+    }
+
+    protected static function exportVariable($var, $depth = 0)
+    {
+        $ret = $var;
+        $depth++;
+
+        if (is_array($var)) {
+            $ret = '[';
+            $array_elements = [];
+            if (count($var) > 4) {
+                $array_elements[] = self::exportVariable(next($var), $depth);
+                $array_elements[] = self::exportVariable(next($var), $depth);
+                $array_elements[] = self::exportVariable(next($var), $depth);
+                $array_elements[] = '...';
+                $array_elements[] = self::exportVariable(end($var), $depth);
+            } else {
+                foreach ($var as $k => $v) {
+                    $array_elements[] = self::exportVariable($v, $depth);
+                }
+            }
+
+            $ret .= join(', ', $array_elements);
+            $ret .= ']';
+        }
+
+        if (is_string($var)) {
+            $ret = '"' . $ret . '"';
+        }
+
+        return $ret;
+    }
+
+    protected static function exportVariableType($var)
+    {
+        $type = gettype($var);
+
+        if (is_array($var)) {
+            $type .= '(' . count($var) . ')';
+        } elseif (is_string($var)) {
+            $type .= '(' . strlen($var) . ')';
+        }
+
+        return $type;
     }
 }
