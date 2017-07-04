@@ -106,7 +106,17 @@ class Fiddle
         }
 
         $source_code .= implode(', ', $params);
-        $source_code .= '){' . PHP_EOL;
+        $source_code .= ') ';
+
+        if ($reflection->getStaticVariables()) {
+            $used_variables = [];
+            array_walk($reflection->getStaticVariables(), function($var, $key) use (&$used_variables) {
+                $used_variables[] = '$' . $key;
+            });
+            $source_code .= PHP_EOL . 'use ('.implode(', ', $used_variables).') ';
+        }
+
+        $source_code .= '{' . PHP_EOL;
         $lines = file($reflection->getFileName());
 
         for ($l = $reflection->getStartLine(); $l < $reflection->getEndLine(); $l++) {
