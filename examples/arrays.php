@@ -2,35 +2,29 @@
 
 $fiddle->start();
 
-$fiddle->withExecutionTime();
-$fiddle->export(function () {
+$fiddle->withExecutionTime()
+    ->export(function () {
 	$a = [ 1, 2, 3 ];
 	$b = [ 4, 5, 6, 7 ];
 	$c = $a + $b;
 	return $c;
 });
-?>
 
-<?php
 $fiddle->export(function () {
 	$a = [ 1, 2, 3 ];
 	$b = [ 4, 5, 6, 7 ];
 	$c = array_replace($b, $a);
 	return $c;
 });
-$fiddle->withExecutionTime(false);
-?>
 
-<?php
-$fiddle->export(function () {
+$fiddle->withoutExecutionTime()
+    ->export(function () {
 	$a = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 	$b = [ 'a' => 0, 'd' => 4, 'e' => 5 ];
 	$c = $a + $b;
 	return $c;
 });
-?>
 
-<?php
 $fiddle->export(function () {
 	$a = [ 1, 2, 3 ];
 	$b = [ 4, 5, 6, 7 ];
@@ -38,17 +32,13 @@ $fiddle->export(function () {
 	return $c;
 });
 
-?>
-
-<?php
-
 $a = $b = range (0, 999);
 $b[] = 1000;
 shuffle($a);
 shuffle($b);
 
-$fiddle->withExecutionTime();
-$fiddle->export(function() use ($a, $b) {
+$fiddle->withExecutionTime()
+    ->export(function() use ($a, $b) {
 	$c = array_merge(array_diff($a, $b), array_diff($b, $a));
 	return $c;
 });

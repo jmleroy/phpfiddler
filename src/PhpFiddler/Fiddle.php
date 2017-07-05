@@ -21,10 +21,20 @@ class Fiddle
     public function withExecutionTime($tf = true)
     {
         $this->withExecutionTime = $tf;
+        return $this;
+    }
+    public function withoutExecutionTime()
+    {
+        return $this->withExecutionTime(false);
     }
     public function withHighlight($tf = true)
     {
         $this->withHighlight = $tf;
+        return $this;
+    }
+    public function withoutHighlight()
+    {
+        return $this->withHighlight(false);
     }
 
 //actions
