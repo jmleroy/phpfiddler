@@ -10,7 +10,8 @@ $app->get('/', function() {
 $app->get('/examples/{name}', function($name) use ($app) {
     ob_start();
     include (__DIR__ . '/../examples/' . $name . '.php');
-    $body = ob_end_flush();
+
+    $body = ob_get_clean();
 
     return $body;
 });
@@ -18,7 +19,7 @@ $app->get('/examples/{name}', function($name) use ($app) {
 $app->get('/fiddles/{name}', function($name) use ($app) {
     ob_start();
     include (__DIR__ . '/../fiddles/' . $name . '.php');
-    $body = ob_end_flush();
+    $body = ob_get_clean();
 
     return $body;
 });
