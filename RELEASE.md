@@ -1,8 +1,15 @@
-# 0.1.1
+#Releases
+
+## 0.2.0
+
+- Fixed trailing 1 in html output
+- MAJOR CHANGE: Turned Fiddle class into a singleton, breaking existing fiddles and examples
+
+## 0.1.1
 
 - Removed an old unrelated directory `other/`
 - Added a new directory `fiddles/` and the route of the same name to put custom fiddles in a safe place
 
-# 0.1.0
+## 0.1.0
 
 - First pre-release to include a microframework (Silex) and namespacing. Before that, phpfiddler was a QAD script that growed organically.
