@@ -1,7 +1,4 @@
 <?php
-
-$fiddle->start();
-
 $fiddle->withExecutionTime()
     ->export(function () {
 	$a = [ 1, 2, 3 ];
@@ -50,4 +47,3 @@ $fiddle->export(function() use ($a, $b, $c) {
 	sort($b);
 	return $a == $b;
 });
-$fiddle->end();

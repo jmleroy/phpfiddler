@@ -10,8 +10,9 @@ $app->get('/', function() {
 
 $app->get('/examples/{name}', function($name) use ($app, $fiddle) {
     ob_start();
+    $fiddle->start();
     include (__DIR__ . '/../examples/' . $name . '.php');
-
+    $fiddle->end();
     $body = ob_get_clean();
 
     return $body;
@@ -19,7 +20,9 @@ $app->get('/examples/{name}', function($name) use ($app, $fiddle) {
 
 $app->get('/fiddles/{name}', function($name) use ($app, $fiddle) {
     ob_start();
+    $fiddle->start();
     include (__DIR__ . '/../fiddles/' . $name . '.php');
+    $fiddle->end();
     $body = ob_get_clean();
 
     return $body;

@@ -1,7 +1,4 @@
 <?php
-
-$fiddle->start();
-
 $fiddle->export(function () {
     $a = true;
     $b = false;
@@ -9,5 +6,3 @@ $fiddle->export(function () {
     
     return $a || $b && $c;
 });
-
-$fiddle->end();

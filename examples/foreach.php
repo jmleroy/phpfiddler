@@ -1,7 +1,4 @@
 <?php
-
-$fiddle->start();
-
 class Gen {
   public $values = [];
   public function fetch()
@@ -26,5 +23,3 @@ $fiddle->export(function () {
 
   return $ret;
 });
-
-$fiddle->end();
