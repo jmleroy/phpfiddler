@@ -1,6 +1,6 @@
 <?php
 
-namespace Fiddle;
+namespace PhpFiddler;
 
 trait Singleton
 {

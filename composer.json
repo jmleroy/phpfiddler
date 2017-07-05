@@ -16,7 +16,13 @@
     ],
     "require": {
         "scrivo/highlight.php": "^9.0",
-        "jgthms/minireset.css": "0.0.3" 
+        "jgthms/minireset.css": "0.0.3",
+        "silex/silex": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
     },
     "license": "GPLv3",
     "authors": [

@@ -1,19 +1,22 @@
 <?php
-include_once(dirname(__FILE__).'/vendor/autoload.php');
+namespace PhpFiddler;
 
+use Highlight\Highlighter;
 
 class Fiddle
 {
+    //use PhpFiddler\Singleton;
+
     protected static $withExecutionTime = false;
     protected static $withHighlight = true;
 //display
     public static function start()
     {
-        include_once(dirname(__FILE__).'/header.inc.php');
+        include_once(dirname(__FILE__).'/Resources/header.inc.php');
     }
     public static function end()
     {
-        include_once(dirname(__FILE__).'/footer.inc.php');
+        include_once(dirname(__FILE__).'/Resources/footer.inc.php');
     }
     public static function withExecutionTime($tf = true)
     {
@@ -40,7 +43,7 @@ class Fiddle
         $start_time = microtime(true);
         $function_return = $function();
         $time = microtime(true) - $start_time;
-        self::display(var_export($function(), true), $source_code, $time);
+        self::display(var_export($function_return, true), $source_code, $time);
     }
 
     protected static function loadCode($function)
@@ -61,7 +64,7 @@ class Fiddle
      */
     protected static function dumpFunction($function)
     {
-        $func = new ReflectionFunction($function);
+        $func = new \ReflectionFunction($function);
         $filename = $func->getFileName();
         $start_line = $func->getStartLine() - 1; // it's actually - 1, otherwise you wont get the function() block
         $end_line = $func->getEndLine();
@@ -80,7 +83,7 @@ class Fiddle
     protected static function dumpClosure($closure)
     {
         $source_code = 'function (';
-        $reflection = new ReflectionFunction($closure);
+        $reflection = new \ReflectionFunction($closure);
         $params = array();
 
         foreach ($reflection->getParameters() as $parameter) {
@@ -154,7 +157,7 @@ class Fiddle
     protected static function highlight($function_source_code)
     {
         if (self::$withHighlight) {
-            $h = new Highlight\Highlighter();
+            $h = new Highlighter;
             $highlighted_source_code = $h->highlight('php', $function_source_code);
             $function_source_code = $highlighted_source_code->value;
         }
