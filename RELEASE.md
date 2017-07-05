@@ -1,5 +1,11 @@
 #Releases
 
+## 0.2.1
+
+- Fiddle start and end (setup of html layout) is now in the routes instead of having to set them in the fiddles. This prepares the code to be decoupled from the default layout.
+- Chains configuration to Fiddle object
+- Initializes $fiddle object from index instead of fiddle script
+
 ## 0.2.0
 
 - Fixed trailing 1 in html output
