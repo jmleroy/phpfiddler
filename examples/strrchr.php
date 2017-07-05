@@ -1,7 +1,4 @@
 <?php
-use PhpFiddler\Fiddle;
-
-$fiddle = new Fiddle;
 
 $fiddle->start();
 
