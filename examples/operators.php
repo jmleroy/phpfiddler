@@ -1,9 +1,11 @@
 <?php
 use PhpFiddler\Fiddle;
 
-Fiddle::start();
+$fiddle = new Fiddle;
 
-Fiddle::export(function () {
+$fiddle->start();
+
+$fiddle->export(function () {
     $a = true;
     $b = false;
     $c = false;
@@ -11,4 +13,4 @@ Fiddle::export(function () {
     return $a || $b && $c;
 });
 
-Fiddle::end();
+$fiddle->end();

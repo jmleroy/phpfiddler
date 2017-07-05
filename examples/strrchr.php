@@ -1,11 +1,13 @@
 <?php
 use PhpFiddler\Fiddle;
 
-Fiddle::start();
+$fiddle = new Fiddle;
 
-Fiddle::export(function () {
+$fiddle->start();
+
+$fiddle->export(function () {
     $a = 'plok.php';
     return strrchr($a, '.');
 });
 
-Fiddle::end();
+$fiddle->end();

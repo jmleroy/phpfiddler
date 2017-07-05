@@ -5,53 +5,53 @@ use Highlight\Highlighter;
 
 class Fiddle
 {
-    //use PhpFiddler\Singleton;
+    use Singleton;
 
-    protected static $withExecutionTime = false;
-    protected static $withHighlight = true;
+    protected $withExecutionTime = false;
+    protected $withHighlight = true;
 //display
-    public static function start()
+    public function start()
     {
         include_once(dirname(__FILE__).'/Resources/header.inc.php');
     }
-    public static function end()
+    public function end()
     {
         include_once(dirname(__FILE__).'/Resources/footer.inc.php');
     }
-    public static function withExecutionTime($tf = true)
+    public function withExecutionTime($tf = true)
     {
-        self::$withExecutionTime = $tf;
+        $this->withExecutionTime = $tf;
     }
-    public static function withHighlight($tf = true)
+    public function withHighlight($tf = true)
     {
-        self::$withHighlight = $tf;
+        $this->withHighlight = $tf;
     }
 
 //actions
-    public static function play($function)
+    public function play($function)
     {
-        $source_code = self::loadCode($function);
+        $source_code = $this->loadCode($function);
         $start_time = microtime(true);
         $function_return = $function();
         $time = microtime(true) - $start_time;
-        self::display($function_return, $source_code, $time);
+        $this->display($function_return, $source_code, $time);
     }
 
-    public static function export($function)
+    public function export($function)
     {
-        $source_code = self::loadCode($function);
+        $source_code = $this->loadCode($function);
         $start_time = microtime(true);
         $function_return = $function();
         $time = microtime(true) - $start_time;
-        self::display(var_export($function_return, true), $source_code, $time);
+        $this->display(var_export($function_return, true), $source_code, $time);
     }
 
-    protected static function loadCode($function)
+    protected function loadCode($function)
     {
         if (is_callable($function)) {
-            $source_code = self::dumpClosure($function);
+            $source_code = $this->dumpClosure($function);
         } else {
-            $source_code = self::dumpFunction($function);
+            $source_code = $this->dumpFunction($function);
         }
 
         return $source_code;
@@ -62,7 +62,7 @@ class Fiddle
      * @param string $function
      * @return string
      */
-    protected static function dumpFunction($function)
+    protected function dumpFunction($function)
     {
         $func = new \ReflectionFunction($function);
         $filename = $func->getFileName();
@@ -80,7 +80,7 @@ class Fiddle
      * @param callable $closure
      * @return string
      */
-    protected static function dumpClosure($closure)
+    protected function dumpClosure($closure)
     {
         $source_code = 'function (';
         $reflection = new \ReflectionFunction($closure);
@@ -116,9 +116,9 @@ class Fiddle
             $used_variables = [];
             array_walk($reflection->getStaticVariables(), function($var, $key) use (&$definitions, &$used_variables) {
                 $definitions[] = '$'.$key . ' = ' .
-                    self::exportVariable($var) .
+                    $this->exportVariable($var) .
                     '; // ' .
-                    self::exportVariableType($var);
+                    $this->exportVariableType($var);
                 $used_variables[] = '$' . $key;
             });
             $source_code = implode(PHP_EOL, $definitions) . PHP_EOL . $source_code;
@@ -135,9 +135,9 @@ class Fiddle
         return $source_code;
     }
 
-    protected static function display($function_return, $function_source_code, $execution_time)
+    protected function display($function_return, $function_source_code, $execution_time)
     {
-        $function_source_code = self::highlight($function_source_code);
+        $function_source_code = $this->highlight($function_source_code);
 
         echo '<table class="display">';
         echo '<thead><tr>';
@@ -148,15 +148,15 @@ class Fiddle
         echo '<td style="width:50%"><pre class="hljs php">' . $function_source_code . '</pre></td>';
         echo '<td style="width:50%"><pre>' . $function_return . '</pre></td>';
         echo '</tr></tbody>';
-        if (self::$withExecutionTime) {
+        if ($this->withExecutionTime) {
             echo '<tfoot><tr><td colspan="2">Execution time : ' . sprintf('%.5f', $execution_time * 1000). ' seconds</td></tr></tfoot>';
         }
         echo '</table>';
     }
 
-    protected static function highlight($function_source_code)
+    protected function highlight($function_source_code)
     {
-        if (self::$withHighlight) {
+        if ($this->withHighlight) {
             $h = new Highlighter;
             $highlighted_source_code = $h->highlight('php', $function_source_code);
             $function_source_code = $highlighted_source_code->value;
@@ -165,7 +165,7 @@ class Fiddle
         return $function_source_code;
     }
 
-    protected static function exportVariable($var, $depth = 0)
+    protected function exportVariable($var, $depth = 0)
     {
         $ret = $var;
         $depth++;
@@ -174,14 +174,14 @@ class Fiddle
             $ret = '[';
             $array_elements = [];
             if (count($var) > 4) {
-                $array_elements[] = self::exportVariable(next($var), $depth);
-                $array_elements[] = self::exportVariable(next($var), $depth);
-                $array_elements[] = self::exportVariable(next($var), $depth);
+                $array_elements[] = $this->exportVariable(next($var), $depth);
+                $array_elements[] = $this->exportVariable(next($var), $depth);
+                $array_elements[] = $this->exportVariable(next($var), $depth);
                 $array_elements[] = '...';
-                $array_elements[] = self::exportVariable(end($var), $depth);
+                $array_elements[] = $this->exportVariable(end($var), $depth);
             } else {
                 foreach ($var as $k => $v) {
-                    $array_elements[] = self::exportVariable($v, $depth);
+                    $array_elements[] = $this->exportVariable($v, $depth);
                 }
             }
 
@@ -196,7 +196,7 @@ class Fiddle
         return $ret;
     }
 
-    protected static function exportVariableType($var)
+    protected function exportVariableType($var)
     {
         $type = gettype($var);
 

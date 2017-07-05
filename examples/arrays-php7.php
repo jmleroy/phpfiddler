@@ -1,12 +1,14 @@
 <?php
 use PhpFiddler\Fiddle;
 
-Fiddle::start();
-Fiddle::withExecutionTime();
+$fiddle = new Fiddle;
 
-Fiddle::export(function() {
+$fiddle->start();
+$fiddle->withExecutionTime();
+
+$fiddle->export(function() {
     preg_match('/^\d{3}\-\d{3}\-(\d{4})$/', '555-666-7890', $matches);
     [$match, $lastFour] = $matches;
 });
 
-Fiddle::end();
+$fiddle->end();

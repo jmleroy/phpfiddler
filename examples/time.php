@@ -1,9 +1,11 @@
 <?php
-use PhpFiddler\Fiddle;;
+use PhpFiddler\Fiddle;
 
-Fiddle::start();
+$fiddle = new Fiddle;
 
-Fiddle::export(function () {
+$fiddle->start();
+
+$fiddle->export(function () {
     $a = new \DateTime('1965-01-01');
     $b = new \DateTime('1968-01-01');
     
@@ -14,4 +16,4 @@ Fiddle::export(function () {
     ];
 });
 
-Fiddle::end();
+$fiddle->end();

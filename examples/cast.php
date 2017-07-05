@@ -1,11 +1,13 @@
 <?php
 use PhpFiddler\Fiddle;
 
-Fiddle::start();
+$fiddle = new Fiddle;
 
-Fiddle::export(function () {
+$fiddle->start();
+
+$fiddle->export(function () {
     $a = [1, 2, 3];
     return (Object)$a;
 });
 
-Fiddle::end();
+$fiddle->end();

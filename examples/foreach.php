@@ -1,7 +1,9 @@
 <?php
 use PhpFiddler\Fiddle;
 
-Fiddle::start();
+$fiddle = new Fiddle;
+
+$fiddle->start();
 
 class Gen {
   public $values = [];
@@ -13,7 +15,7 @@ class Gen {
   }
 }
 
-Fiddle::export(function () {
+$fiddle->export(function () {
   foreach([] as $plok) {
     echo 'boink';
   }
@@ -28,4 +30,4 @@ Fiddle::export(function () {
   return $ret;
 });
 
-Fiddle::end();
+$fiddle->end();
