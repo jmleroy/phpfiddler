@@ -4,8 +4,77 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e57f0897e0310d6f5cb35084448d1cb",
+    "content-hash": "3732a81357feb97ca141f725e7a641d3",
     "packages": [
+        {
+            "name": "league/commonmark",
+            "version": "0.15.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/commonmark.git",
+                "reference": "c4c8e6bf99e62d9568875d9fc3ef473fe3e18e0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/c4c8e6bf99e62d9568875d9fc3ef473fe3e18e0c",
+                "reference": "c4c8e6bf99e62d9568875d9fc3ef473fe3e18e0c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.8"
+            },
+            "replace": {
+                "colinodell/commonmark-php": "*"
+            },
+            "require-dev": {
+                "cebe/markdown": "~1.0",
+                "erusev/parsedown": "~1.0",
+                "jgm/commonmark": "0.27",
+                "michelf/php-markdown": "~1.4",
+                "mikehaertl/php-shellcommand": "~1.2.0",
+                "phpunit/phpunit": "~4.3|~5.0",
+                "scrutinizer/ocular": "~1.1",
+                "symfony/finder": "~2.3|~3.0"
+            },
+            "suggest": {
+                "league/commonmark-extras": "Library of useful extensions including smart punctuation"
+            },
+            "bin": [
+                "bin/commonmark"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.16-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\CommonMark\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Markdown parser for PHP based on the CommonMark spec",
+            "homepage": "https://github.com/thephpleague/commonmark",
+            "keywords": [
+                "commonmark",
+                "markdown",
+                "parser"
+            ],
+            "time": "2017-05-09T12:47:53+00:00"
+        },
         {
             "name": "pimple/pimple",
             "version": "v3.1.0",

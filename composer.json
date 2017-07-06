@@ -16,7 +16,8 @@
     ],
     "require": {
         "scrivo/highlight.php": "^9.0",
-        "silex/silex": "^2.1"
+        "silex/silex": "^2.1",
+        "league/commonmark": "^0.15.4"
     },
     "autoload": {
         "psr-4": {
