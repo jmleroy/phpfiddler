@@ -4,19 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "39c65525861ca2afdf7780d557c74604",
+    "content-hash": "8e57f0897e0310d6f5cb35084448d1cb",
     "packages": [
-        {
-            "name": "jgthms/minireset.css",
-            "version": "0.0.3",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/jgthms/minireset.css/archive/0.0.3.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        },
         {
             "name": "pimple/pimple",
             "version": "v3.1.0",

@@ -155,7 +155,7 @@ class Fiddle
         echo '<th>Return</th>';
         echo '</tr></thead>';
         echo '<tbody><tr>';
-        echo '<td style="width:50%"><pre class="hljs php">' . $function_source_code . '</pre></td>';
+        echo '<td style="width:50%"><pre><code class="hljs php">' . $function_source_code . '</code></pre></td>';
         echo '<td style="width:50%"><pre>' . $function_return . '</pre></td>';
         echo '</tr></tbody>';
         if ($this->withExecutionTime) {
