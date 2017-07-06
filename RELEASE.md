@@ -1,5 +1,10 @@
 #Releases
 
+## 0.2.2
+
+- Home page now displays README instead of Hello world
+- Adds Skeleton boilerplate
+
 ## 0.2.1
 
 - Adds example of $fiddle->play() compared to $fiddle->export
