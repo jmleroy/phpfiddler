@@ -1,5 +1,11 @@
 #Releases
 
+## 0.3.0
+
+- Layout transformation
+- Twig is now used for rendering
+- Default blank pages for fiddles and examples
+
 ## 0.2.2
 
 - Home page now displays README instead of Hello world

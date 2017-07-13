@@ -1,0 +1,37 @@
+{% set available_routes = {'examples': 'Examples', 'fiddles': 'Your Fiddles', 'about': 'About'} %}
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro" rel="stylesheet">
+    <!-- Link to the stylesheets: -->
+    <link rel="stylesheet" type="text/css" href="/assets/Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/assets/Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/scrivo/highlight.php/styles/default.css">
+    <link rel="stylesheet" type="text/css" href="/assets/default.css">
+    <title>PHP Fiddler - {% block title %}{{ title|default('Home Page') }}{% endblock %}</title>
+</head>
+<body>
+<div class="container">
+    <section class="header">
+        <h1 class="title"><a href="/">PHP Fiddler</a></h1>
+        <nav class="navbar">
+            <ul class="navbar-list">
+                {% for route, label in available_routes %}
+                <li class="navbar-item">
+                    <a class="navbar-link{% if global.request.get('_route') == route %} active{% endif %}" href="{{ path(route) }}">{{ label }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </section>
+    <div id="body">
+        {% block content %}
+            {% if body is defined %}
+            <h2>{{ title|default(global.request.get('_route')) }}</h2>
+            {{ body|raw }}
+            {% endif %}
+        {% endblock %}
+    </div>
+</div>
+<div id="info">PHP version: {{ constant('PHP_VERSION') }}</div>
+</body>
+</html>
