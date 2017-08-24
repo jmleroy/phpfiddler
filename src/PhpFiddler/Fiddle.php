@@ -7,6 +7,10 @@ class Fiddle
 {
     use Singleton;
 
+    protected $functionReturn = '';
+    protected $sourceCode = '';
+    protected $executionTime = 0;
+
     protected $withExecutionTime = false;
     protected $withHighlight = true;
 //display
@@ -38,22 +42,24 @@ class Fiddle
     }
 
 //actions
+
     public function play($function)
     {
-        $source_code = $this->loadCode($function);
+        $this->sourceCode = $this->loadCode($function);
         $start_time = microtime(true);
-        $function_return = $function();
-        $time = microtime(true) - $start_time;
-        $this->display($function_return, $source_code, $time);
+        $this->functionReturn = $function();
+        $this->executionTime = microtime(true) - $start_time;
+        $this->display();
     }
 
     public function export($function)
     {
-        $source_code = $this->loadCode($function);
+        $this->sourceCode = $this->loadCode($function);
         $start_time = microtime(true);
-        $function_return = $function();
-        $time = microtime(true) - $start_time;
-        $this->display(var_export($function_return, true), $source_code, $time);
+        $this->functionReturn = $function();
+        $this->executionTime = microtime(true) - $start_time;
+        $this->functionReturn = var_export($this->functionReturn, true);
+        $this->display();
     }
 
     protected function loadCode($function)
@@ -145,22 +151,28 @@ class Fiddle
         return $source_code;
     }
 
-    protected function display($function_return, $function_source_code, $execution_time)
+    protected function display()
     {
-        $function_source_code = $this->highlight($function_source_code);
-
         echo '<table class="display">';
         echo '<thead><tr>';
         echo '<th>Source Code</th>';
         echo '<th>Return</th>';
         echo '</tr></thead>';
         echo '<tbody><tr>';
-        echo '<td style="width:50%"><pre><code class="hljs php">' . $function_source_code . '</code></pre></td>';
-        echo '<td style="width:50%"><pre>' . $function_return . '</pre></td>';
+        echo '<td style="width:50%"><pre>';
+        echo '<code class="hljs php">' . $this->highlight($this->sourceCode) . '</code>';
+        echo '</pre></td>';
+        echo '<td style="width:50%"><pre>';
+        echo $this->functionReturn;
+        echo '</pre></td>';
         echo '</tr></tbody>';
+
         if ($this->withExecutionTime) {
-            echo '<tfoot><tr><td colspan="2">Execution time : ' . sprintf('%.5f', $execution_time * 1000). ' seconds</td></tr></tfoot>';
+            echo '<tfoot><tr><td colspan="2">Execution time : ';
+            echo sprintf('%.5f', $this->executionTime * 1000);
+            echo ' seconds</td></tr></tfoot>';
         }
+
         echo '</table>';
     }
 
