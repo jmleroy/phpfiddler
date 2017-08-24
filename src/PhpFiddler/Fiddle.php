@@ -14,14 +14,15 @@ class Fiddle
     protected $withExecutionTime = false;
     protected $withHighlight = true;
 //display
-    public function start()
-    {
-        include_once(dirname(__FILE__).'/Resources/header.inc.php');
-    }
-    public function end()
-    {
-        include_once(dirname(__FILE__).'/Resources/footer.inc.php');
-    }
+    /**
+     * @deprecated
+     */
+    public function start() { }
+    /**
+     * @deprecated
+     */
+    public function end() { }
+
     public function withExecutionTime($tf = true)
     {
         $this->withExecutionTime = $tf;
