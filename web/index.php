@@ -47,7 +47,7 @@ $app->get('/fiddles/{name}', function($name) use ($app, $fiddle) {
     $body = ob_get_clean();
 
     return $app['twig']->render('main.html.twig', ['title' => 'Fiddle: ' . $name, 'body' => $body]);
-})->bind('fiddlee');
+})->bind('fiddle');
 
 $app->run();
 
