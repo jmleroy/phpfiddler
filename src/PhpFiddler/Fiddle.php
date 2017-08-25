@@ -149,6 +149,8 @@ class Fiddle
             $source_code .= $lines[$l];
         }
 
+        $source_code = preg_replace('/}( *)\)( *);$/', '}', $source_code);
+
         return $source_code;
     }
 
