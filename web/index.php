@@ -30,8 +30,13 @@ $app->get('/examples', function() use ($app) {
 })->bind('examples');
 
 $app->get('/examples/{name}', function($name) use ($app, $fiddle) {
+    $filename = __DIR__ . '/../examples/' . $name . '.php';
     ob_start();
-    include (__DIR__ . '/../examples/' . $name . '.php');
+    if(!file_exists($filename)) {
+        echo '<h4>This fiddle does not exist.</h4>';
+    } else {
+        include $filename;
+    }
     $body = ob_get_clean();
 
     return $app['twig']->render('main.html.twig', ['title' => 'Example: ' . $name, 'body' => $body]);
@@ -42,8 +47,13 @@ $app->get('/fiddles', function() use ($app) {
 })->bind('fiddles');
 
 $app->get('/fiddles/{name}', function($name) use ($app, $fiddle) {
+    $filename = __DIR__ . '/../fiddles/' . $name . '.php';
     ob_start();
-    include (__DIR__ . '/../fiddles/' . $name . '.php');
+    if(!file_exists($filename)) {
+        echo '<h4>This fiddle does not exist.</h4>';
+    } else {
+        include $filename;
+    }
     $body = ob_get_clean();
 
     return $app['twig']->render('main.html.twig', ['title' => 'Fiddle: ' . $name, 'body' => $body]);

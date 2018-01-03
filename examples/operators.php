@@ -6,3 +6,10 @@ $fiddle->export(function () {
     
     return $a || $b && $c;
 });
+
+$fiddle->export(function () {
+    $a = 1;
+    $b = 1;
+
+    return $a === $b;
+});

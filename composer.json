@@ -19,7 +19,8 @@
         "silex/silex": "^2.1",
         "league/commonmark": "^0.15.4",
         "twig/twig": "^1.34",
-        "symfony/twig-bridge": "^3.3"
+        "symfony/twig-bridge": "^3.3",
+        "phpunit/php-timer": "^1.0"
     },
     "autoload": {
         "psr-4": {

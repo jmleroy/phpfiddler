@@ -2,6 +2,7 @@
 namespace PhpFiddler;
 
 use Highlight\Highlighter;
+use PHP_Timer;
 
 class Fiddle
 {
@@ -9,7 +10,8 @@ class Fiddle
 
     protected $functionReturn = '';
     protected $sourceCode = '';
-    protected $executionTime = 0;
+
+    protected $title = '';
 
     protected $withExecutionTime = false;
     protected $withHighlight = true;
@@ -41,26 +43,56 @@ class Fiddle
     {
         return $this->withHighlight(false);
     }
+    public function title($title='')
+    {
+        $this->title = $title;
+        return $this;
+    }
 
 //actions
-
     public function play($function)
     {
         $this->sourceCode = $this->loadCode($function);
-        $start_time = microtime(true);
+        $this->startExecutionTime();
         $this->functionReturn = $function();
-        $this->executionTime = microtime(true) - $start_time;
+        $this->saveExecutionTime();
         $this->display();
     }
 
     public function export($function)
     {
         $this->sourceCode = $this->loadCode($function);
-        $start_time = microtime(true);
+        $this->startExecutionTime();
         $this->functionReturn = $function();
-        $this->executionTime = microtime(true) - $start_time;
+        $this->saveExecutionTime();
         $this->functionReturn = var_export($this->functionReturn, true);
         $this->display();
+    }
+
+    protected function startExecutionTime()
+    {
+        Timer::start();
+    }
+
+    protected function saveExecutionTime()
+    {
+        Timer::stop();
+    }
+
+    /**
+     * @return double
+     */
+    protected function getExecutionTime()
+    {
+        return Timer::get();
+    }
+
+    /**
+     * @return string
+     */
+    protected function getExecutionTimeInMicroseconds()
+    {
+        return Timer::getMicroseconds(0);
     }
 
     protected function loadCode($function)
@@ -156,6 +188,9 @@ class Fiddle
 
     protected function display()
     {
+        if($this->title) {
+            echo '<h4>'.$this->title.'</h4>';
+        }
         echo '<table class="display">';
         echo '<thead><tr>';
         echo '<th>Source Code</th>';
@@ -171,9 +206,7 @@ class Fiddle
         echo '</tr></tbody>';
 
         if ($this->withExecutionTime) {
-            echo '<tfoot><tr><td colspan="2">Execution time : ';
-            echo sprintf('%.5f', $this->executionTime * 1000);
-            echo ' seconds</td></tr></tfoot>';
+            echo '<tfoot><tr><td colspan="2">Execution time : '.$this->getExecutionTimeInMicroseconds().'</td></tr></tfoot>';
         }
 
         echo '</table>';

@@ -1,5 +1,13 @@
 #Releases
 
+## 0.5.0
+
+- Fixes Execution Time
+
+## 0.4.0
+
+- Fiddle needs withOutput() to be displayed directly. 
+
 ## 0.3.0
 
 - Layout transformation
